@@ -6,10 +6,10 @@ def get_users(db: Session):
     return db.query(models.User).all()
 
 def get_user_by_id(db: Session, user_id: int):
-    return db.query(models.User).filter(models.User.id == user_id).first()
+    return db.query(models.User).filter(models.User.id == user_id)
 
 def get_user_by_name(db: Session, name: str):
-    return db.query(models.User).filter(models.User.name == name).first()
+    return db.query(models.User).filter(models.User.name == name)
 
 def create_user(db: Session, user: schemas.UserCreate):
     fake_hashed_password = user.password + "notreallyhashed"
