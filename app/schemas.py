@@ -11,7 +11,7 @@ class UserWID(UserBase):
     surname: str
     name: str
 
-class UserCreate(UserBase):
+class UserCreate(UserWOID):
     pass
 
 
