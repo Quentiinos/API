@@ -14,6 +14,5 @@ class UserWID(UserBase):
 class UserCreate(UserWOID):
     pass
 
-
-class Config:
-    orm_mode = True
+    class Config:
+        orm_mode = True

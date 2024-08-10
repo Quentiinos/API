@@ -45,7 +45,7 @@ async def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
         return crud.create_user(db=db, user=user)
 
 @router.delete("/users/{id}", status_code=status.HTTP_200_OK)
-async def delete_user(id: int, db: Session = Depends(get_db)):
+async def delete_user_by_id(id: int, db: Session = Depends(get_db)):
     user = crud.get_user_by_id(db, id)
     if user is None:
         raise HTTPException(status_code=status.HTTP_204_NO_CONTENT, detail="User not found")
@@ -55,5 +55,14 @@ async def delete_user(id: int, db: Session = Depends(get_db)):
         "detail": f"User: {user.name} {user.surname} (ID: {user.id}) deleted successfully !"
     }
  
+@router.put("/users/{id}", response_model=schemas.UserWID, status_code=status.HTTP_200_OK)
+async def update_user_by_id(id: int, user_update: schemas.UserCreate, db: Session = Depends(get_db)):
+    user = crud.get_user_by_id(db, id)
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
+
+    updated_user = crud.update_user(db, user, user_update)
+
+    return updated_user
 
 app.include_router(router)
