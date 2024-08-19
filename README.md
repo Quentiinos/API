@@ -21,7 +21,7 @@ git clone https://github.com/Quentiinos/API.git
 #### Install dependencies :
 
 ```bash
-pip install fastapi sqlalchemy pydantic psycopg2-binary uvicorn
+pip install fastapi sqlalchemy pydantic psycopg2-binary uvicorn python-dotenv
 ```
 
 ## Configuation
